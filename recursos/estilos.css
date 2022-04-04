@@ -1,0 +1,25 @@
+#encabezado{
+    display:grid;
+    grid-template-columns: 5% 90%;
+    grid-template-areas: 'logo nombre';
+    border: 1px solid black;
+}
+header>h1{
+    grid-area: nombre;
+}
+#logoGenerico{
+    margin: 12px;
+    margin-top: 13px;
+    grid-area: logo;
+}
+#lateral{
+    border: 1px solid black;
+    width: 100px;
+}
+h3{
+    text-align: center;
+    color: rgb(4, 66, 66);
+}
+h3:hover{
+    background-color: rgb(126, 231, 231);
+}

@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Salud - Signos vitales</title>
     <link rel="stylesheet" href="recursos/estilos.css">
+    <style>
+        aside{
+            float:left;
+        }
+        form{
+            margin: 10px;
+        }
+        #caja{
+            float: left;
+            margin: 10px;
+            text-align: right;
+        }
+        #caja2{
+            border: solid black 2px;
+            width: 400px;
+            height: 400px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header id="encabezado">
@@ -22,5 +41,25 @@
                 <h3><a href="Resumen.html">Resumen</a></h3>
         </nav>
     </aside>
+    <div id="caja">
+        <form action="" method="post">
+            <br>
+            <label for="vital">Signo vital: </label>
+            <select name="vital" id="vital">
+                <option value="Presion">Presión arterial</option>
+                <option value="Glucosa">Glucosa</option>
+                <option value="Oxigeno">Oxígeno</option>
+            </select>
+            <br>
+            <label for="valor">Valor: </label>
+            <input type="text" id="valor" required placeholder="Introduce el valor">
+            <br>
+            <button>Guardar cambios</button>
+            <button><a href="PerfilUsuario.html">Cancelar</a></button>
+        </form>
+        <div id="caja2">
+            <label for="gráfica">Gráfica</label>
+        </div>
+        </div>  
 </body>
 </html>

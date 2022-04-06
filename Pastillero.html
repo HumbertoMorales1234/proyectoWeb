@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,29 @@
     <title>E-Salud - Pastillero</title>
     <link rel="stylesheet" href="recursos/estilos.css">
     <style>
-        aside{
-            float:left;
-        }
-        form{
+        form {
             margin: 10px;
         }
-        #caja{
+
+        #caja {
             float: left;
             margin: 10px;
             text-align: right;
         }
-        #caja2{
+
+        #caja2 {
             border: solid black 2px;
             width: 400px;
             height: 400px;
             text-align: center;
+            display: grid;
+            grid-template-columns: 12% 12% 12% 12% 12% 12% 12% 12%;
+            grid-template-rows: 8% 8% 8% 8% 8% 8% 8% 8% 8% 8% 8% 8%;
+
         }
     </style>
 </head>
+
 <body>
     <header id="encabezado">
         <img src="recursos/logoGenerico.png" alt="logoGenerico" width="50px" id="logoGenerico">
@@ -35,10 +40,10 @@
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">
-                <h3><a href="PerfilUsuario.html">Perfil</a></h3>
-                <h3><a href="Pastillero.html">Pastillero</a></h3>
-                <h3><a href="SignosVitales.html">Signos Vitales</a></h3>
-                <h3><a href="Resumen.html">Resumen</a></h3>
+            <h3><a href="PerfilUsuario.html">Perfil</a></h3>
+            <h3><a href="Pastillero.html">Pastillero</a></h3>
+            <h3><a href="SignosVitales.html">Signos Vitales</a></h3>
+            <h3><a href="Resumen.html">Resumen</a></h3>
         </nav>
     </aside>
     <div id="caja">
@@ -53,9 +58,28 @@
             <button>Guardar cambios</button>
             <button><a href="PerfilUsuario.html">Cancelar</a></button>
         </form>
-        <div id="caja2">
-            <label for="calendario">Calendario</label>
+
+        <div>
+            <label for="atomar">Medicamentos listados</label>
+            <br>
+                <input type="checkbox" name="medicamentosborrar1" id="medicamentosborrar1">Med1
+                <input type="checkbox" name="medicamentosborrar2" id="medicamentosborrar2">Med2
+                <input type="checkbox" name="medicamentosborrar3" id="medicamentosborrar3">Med3
+                <button id="eliminar">Eliminar</button>
         </div>
-        </div>  
+
+        <div id="caja2">
+            <div id="horario">horario</div>
+            <div id="dia1">Lun</div>
+            <div id="dia2">Mar</div>
+            <div id="dia3">Miér</div>
+            <div id="dia4">Jue</div>
+            <div id="dia5">Vie</div>
+            <div id="dia6">Sab</div>
+            <div id="dia5">Dom</div>
+            <div id="hora1">8:00</div>
+        </div>
+    </div>
 </body>
+
 </html>

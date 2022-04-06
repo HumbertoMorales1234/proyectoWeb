@@ -16,6 +16,7 @@ header>h1{
     border: 1px solid black;
     width: 100px;
     height: 500px;
+    float: left;
 }
 h3{
     text-align: center;
@@ -23,4 +24,10 @@ h3{
 }
 h3:hover{
     background-color: rgb(126, 231, 231);
+}
+input{
+    margin-top: 5px;
+}
+button{
+    margin-top: 5px;
 }

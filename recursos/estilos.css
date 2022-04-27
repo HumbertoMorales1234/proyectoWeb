@@ -1,7 +1,7 @@
 @media screen and (max-width: 600px) {
     #encabezado {
         display: grid;
-        grid-template-columns: 20% 70%;
+        grid-template-columns: 10% 70% 100px;
         grid-template-areas: 'logo nombre';
         border: 1px solid black;
     }
@@ -10,16 +10,16 @@
 @media screen and (min-width:601px) {
     #encabezado {
         display: grid;
-        grid-template-columns: 10% 70%;
-        grid-template-areas: 'logo nombre';
+        grid-template-columns: 10% 70% 100px;
+        grid-template-areas: 'logo nombre boton';
         border: 1px solid black;
     }
 }
 @media screen and (min-width:1024px) {
     #encabezado {
         display: grid;
-        grid-template-columns: 7% 90%;
-        grid-template-areas: 'logo nombre';
+        grid-template-columns: 7% 85% 100px;
+        grid-template-areas: 'logo nombre boton';
         border: 1px solid black;
     }
 }
@@ -57,4 +57,7 @@ input {
 
 button {
     margin-top: 5px;
+}
+#cerrar{
+    height: 40px;
 }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["usuario"])){
+if(!isset($_SESSION["correo"])){
     echo "
     <script>
         alert('Ingresa usuario y contraseña');

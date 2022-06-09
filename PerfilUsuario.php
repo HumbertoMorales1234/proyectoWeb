@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if(!isset($_SESSION["usuario"])){
+    echo "
+    <script>
+        alert('Ingresa usuario y contraseña');
+        window.location = 'index.php';
+    </script>"
+    session_destroy();
+    die;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

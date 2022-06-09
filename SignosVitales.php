@@ -57,7 +57,7 @@ if(!isset($_SESSION["usuario"])){
         </nav>
     </aside>
     <div id="caja">
-        <form action="conexion/insertSigno.php" method="post">
+        <form action="insertSigno.php" method="post">
             <br>
             <label for="vital">Signo vital: </label>
             <select name="vital" id="vital">

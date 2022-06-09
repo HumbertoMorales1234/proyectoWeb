@@ -25,7 +25,7 @@ if($conn->connect_error){
     }
 
 $sql= "INSERT INTO Paciente (nombrePaciente, apellidoP, apellidoM, correo, contraseña) 
-        VALUES ('".$nombre."','".$aPaterno."','".$aMaterno."','".$correo."','".$contraseña."')";
+        VALUES ('".$nombre."','".$aPaterno."','".$aMaterno."','".$correo."', md5('".$contraseña."'))";
 
 $cursor = $conn->query($sql);
 

@@ -46,7 +46,7 @@
     </header>
 
     <div id="caja" name="caja">
-        <form action="conexion/validaLogin.php" method="post">
+        <form action="validaLogin.php" method="post">
             <label for="correo">Correo: </label>
             <input type="text" name="correo" id="correo" placeholder="Inserte su correo" required>
             <br>

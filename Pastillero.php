@@ -86,7 +86,7 @@ if(!isset($_SESSION["usuario"])){
         </nav>
     </aside>
     <div id="caja">
-        <form action="conexion/insertPastillas.php" method="post">
+        <form action="insertPastillas.php" method="post">
             <br>
             <label for="medicina">Medicina: </label>
             <input type="text" id="medicina" name="medicina" required placeholder="Introduce el nombre de la medicina">

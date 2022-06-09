@@ -33,7 +33,7 @@
         </h1>
     </header>
     <div id="caja">
-        <form action="conexion/insertUsuario.php" method="post">
+        <form action="insertUsuario.php" method="post">
             <br>
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" name="nombre" required placeholder="Introduce tu nombre">

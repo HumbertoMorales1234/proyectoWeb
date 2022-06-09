@@ -78,7 +78,7 @@ if($registros == 1){
 
 ?>
     <div id="caja">
-    <form action="conexion/update.php" method="post">
+    <form action="update.php" method="post">
         <br>
         <label for="nombre">Nombre: </label>
         <input type="text" id="nombre" name="nombre" required placeholder="Introduce tu nombre" value="<?=$registros["nombrePaciente"] ?>">

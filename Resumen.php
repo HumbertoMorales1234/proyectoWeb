@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["usuario"])){
+if(!isset($_SESSION["correo"])){
     echo "
     <script>
         alert('Ingresa usuario y contraseña');
         window.location = 'index.php';
-    </script>"
+    </script>";
     session_destroy();
     die;
 }
@@ -39,7 +39,7 @@ $id = $_SESSION["id"];
 
 include("conexion.php");    
 
-$conn = new mysqli($servidor, $user, $password, $bd);
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 
 if($conn->connect_error){
@@ -47,7 +47,7 @@ if($conn->connect_error){
 }
 
 
-$sql= "SELECT * FROM usuarios WHERE id=".$id;
+$sql= "SELECT * FROM Paciente WHERE idPaciente=".$id;
 
 $cursor = $conn->query($sql);
 
@@ -57,10 +57,8 @@ $registros = $cursor->num_rows;
 
 $conn->close();
 
-if($registros == 1){
+if($cursor){
 
-
-    header("Location: index.php");
 }else{
     /* ESPACIO PARA ERROR */
 }
@@ -84,19 +82,19 @@ if($registros == 1){
     </aside>
     <div>
         <h1>Información del Paciente</h1>
-        <label id="nombre">Nombre: <?=$registros["nombrePaciente"] ?></label>
+        <label id="nombre">Nombre: <?=$resultados["nombrePaciente"] ?></label>
         <br>
-        <label id="ApellidoP">Apellido paterno: <?=$registros["apellidoP"] ?></label>
+        <label id="ApellidoP">Apellido paterno: <?=$resultados["apellidoP"] ?></label>
         <br>
-        <label id="Apellidom">Apellido materno: <?=$registros["apellidoM"] ?></label>
+        <label id="Apellidom">Apellido materno: <?=$resultados["apellidoM"] ?></label>
         <br>
-        <label id="GrupoS">Grupo Sanguíneo: <?=$registros["grupoSanguineo"] ?></label>
+        <label id="GrupoS">Grupo Sanguíneo: <?=$resultados["grupoSanguineo"] ?></label>
         <br>
-        <label id="Cronicos">Padecimientos Crónicos: <?=$registros["padecimiento"] ?></label>
+        <label id="Cronicos">Padecimientos Crónicos: <?=$resultados["padecimiento"] ?></label>
         <br>
-        <label id="AlergiasNormie">Alergías Comunes: <?=$registros["alergia"] ?></label>
+        <label id="AlergiasNormie">Alergías Comunes: <?=$resultados["alergia"] ?></label>
         <br>
-        <label id="AlergiasMedicamentos">Alergias a Medicamentos: <?=$registros["alergiasM"] ?></label>
+        <label id="AlergiasMedicamentos">Alergias a Medicamentos: <?=$resultados["alergiasM"] ?></label>
     </div>
     <div>
         <h2>Información de Medicamentos</h2>

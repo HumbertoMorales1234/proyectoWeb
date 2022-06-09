@@ -6,7 +6,7 @@ if(!isset($_SESSION["correo"])){
     <script>
         alert('Ingresa usuario y contraseña');
         window.location = 'index.php';
-    </script>"
+    </script>";
     session_destroy();
     die;
 }
@@ -50,7 +50,7 @@ $id = $_SESSION["id"];
 
 include("conexion.php");    
 
-$conn = new mysqli($servidor, $user, $password, $bd);
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 
 if($conn->connect_error){
@@ -58,8 +58,7 @@ if($conn->connect_error){
 }
 
 
-$sql= "SELECT * FROM usuarios WHERE id=".$id;
-
+$sql= "SELECT * FROM Paciente WHERE idPaciente=".$_SESSION["id"];
 $cursor = $conn->query($sql);
 
 $resultados = mysqli_fetch_assoc($cursor);
@@ -68,41 +67,34 @@ $registros = $cursor->num_rows;
 
 $conn->close();
 
-if($registros == 1){
-
-
-    header("Location: index.php");
-}else{
-    /* ESPACIO PARA ERROR */
-}
 
 ?>
     <div id="caja">
     <form action="update.php" method="post">
         <br>
         <label for="nombre">Nombre: </label>
-        <input type="text" id="nombre" name="nombre" required placeholder="Introduce tu nombre" value="<?=$registros["nombrePaciente"] ?>">
+        <input type="text" id="nombre" name="nombre" required placeholder="Introduce tu nombre" value="<?=$resultados["nombrePaciente"] ?>">
         <br>
         <label for="aPaterno">Apellido paterno: </label>
-        <input type="text" id="aPaterno" name="aPaterno" required placeholder="Introduce tu apellido paterno" value="<?=$registros["apellidoP"] ?>">
+        <input type="text" id="aPaterno" name="aPaterno" required placeholder="Introduce tu apellido paterno" value="<?=$resultados["apellidoP"] ?>">
         <br>
         <label for="aMaterno">Apellido materno: </label>
-        <input type="text" id="aMaterno" name="aMaterno" required placeholder="Introduce tu apellido materno" value="<?=$registros["apellidoM"] ?>">
+        <input type="text" id="aMaterno" name="aMaterno" required placeholder="Introduce tu apellido materno" value="<?=$resultados["apellidoM"] ?>">
         <br>
         <label for="correo" >Correo: </label>
-        <input type="mail" required placeholder="Introduce tu correo" id="correo" name="correo" value="<?=$registros["correo"] ?>">
+        <input type="mail" required placeholder="Introduce tu correo" id="correo" name="correo" value="<?=$resultados["correo"] ?>">
         <br>
         <label for="alergias" >Alergias: </label>
-        <input type="text" id="alergias" name="alergias" placeholder="Introduce tus alergias" value="<?=$registros["alergia"] ?>">
+        <input type="text" id="alergias" name="alergias" placeholder="Introduce tus alergias" value="<?=$resultados["alergia"] ?>">
         <br>
         <label for="cronicos">Padecimientos crónicos: </label>
-        <input type="text" id="cronicos" name="cronicos" required placeholder="Introduce tus padecimientos" value="<?=$registros["padecimiento"] ?>">
+        <input type="text" id="cronicos" name="cronicos" placeholder="Introduce tus padecimientos" value="<?=$resultados["padecimiento"] ?>">
         <br>
         <label for="aergiasM" >Alergias a medicamentos: </label>
-        <input type="text" id="alergiasM" name="alergiasM" placeholder="Confirma la contraseña" value="<?=$registros["nombrePaciente"] ?>">
+        <input type="text" id="alergiasM" name="alergiasM" placeholder="Confirma la contraseña" value="<?=$resultados["alergia"] ?>">
         <br>
         <label for="sangre" >Tipo de sangre: </label>
-        <input type="text" id="sangre" name="sangre" placeholder="Introduce tipo de sangre" value="<?=$registros["grupoSanguineo"] ?>">
+        <input type="text" id="sangre" name="sangre" placeholder="Introduce tipo de sangre" value="<?=$resultados["grupoSanguineo"] ?>">
         <br>
         <label for="contraseña" >Contraseña: </label>
         <input type="password" id="contraseña" name="contraseña" required placeholder="Introduce tu contraseña" >

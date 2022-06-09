@@ -14,24 +14,22 @@ $sql= "INSERT INTO SignoVital (nombreSigno, cantidadMedida, fechaSigno)
 
 $cursor = $conn->query($sql);
 
-$resultados = mysqli_fetch_assoc($cursor);
-
 $registros = $cursor->num_rows;
 
 $conn->close();
 
-if($registros==1){
+if($cursor){
     echo "
     <script>
     alert('Guardado con Exito');
-    window.location = 'index.php';
-    </script>"
+    window.location = 'SignosVitales.php';
+    </script>";
 }else{
     echo "
     <script>
     alert('Error al guardar');
-    window.location = 'index.php';
-    </script>"
+    window.location = 'SignosVitales.php';
+    </script>";
 }
 
 ?>

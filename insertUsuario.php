@@ -20,7 +20,7 @@ if($conn->connect_error){
         <script>
             alert('Ingresa usuario y contraseña');
             window.location = 'index.php';
-        </script>"
+        </script>";
     die;
     }
 
@@ -29,24 +29,22 @@ $sql= "INSERT INTO Paciente (nombrePaciente, apellidoP, apellidoM, correo, contr
 
 $cursor = $conn->query($sql);
 
-$resultados = mysqli_fetch_assoc($cursor);
-
 $registros = $cursor->num_rows;
 
 $conn->close();
 
-if($registros==1){
+if($cursor){
     echo "
     <script>
     alert('Guardado con Exito');
     window.location = 'index.php';
-    </script>"
+    </script>";
 }else{
     echo "
     <script>
     alert('Error al guardar');
     window.location = 'index.php';
-    </script>"
+    </script>";
 }
 
 ?>

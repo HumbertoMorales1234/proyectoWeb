@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["usuario"])){
+if(!isset($_SESSION["correo"])){
     echo "
     <script>
         alert('Ingresa usuario y contraseña');
         window.location = 'index.php';
-    </script>"
+    </script>";
     session_destroy();
     die;
 }
@@ -90,9 +90,6 @@ if(!isset($_SESSION["usuario"])){
             <br>
             <label for="medicina">Medicina: </label>
             <input type="text" id="medicina" name="medicina" required placeholder="Introduce el nombre de la medicina">
-            <br>
-            <label for="hora">Hora: </label>
-            <input type="text" id="hora" name="hora" required placeholder="Introduce la hora de medicación">
             <br>
             <button type="input">Guardar</button>
             <button><a href="PerfilUsuario.php">Cancelar</a></button>

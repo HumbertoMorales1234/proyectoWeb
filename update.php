@@ -27,33 +27,30 @@ if($conn->connect_error){
         <script>
             alert('Ingresa usuario y contraseña');
             window.location = 'index.php';
-        </script>"
+        </script>";
     die;
     }
 
-$sql= "UPDATE Paciente SET nombrePaciente='".$nombre."', apellidoP='".$aPaterno."', apellidoM='".$aMaterno."',grupoSanguineo='".$sangre."',
-        correo='".$correo."', alergia='".$alergias."', padecimiento='".$cronicos."',alergiasM='".$alergiasM."' WHERE idPaciente=".$_SESSION["id"];
-
+$sql= "UPDATE Paciente SET nombrePaciente='".$nombre."', apellidoP='".$aPaterno."', apellidoM='".$aMaterno."',grupoSanguineo='".$sangre."', correo='".$correo."', alergia='".$alergias."', padecimiento='".$cronicos."',alergiasM='".$alergiasM."' WHERE idPaciente=".$_SESSION["id"];
+echo $sql;
 $cursor = $conn->query($sql);
-
-$resultados = mysqli_fetch_assoc($cursor);
 
 $registros = $cursor->num_rows;
 
 $conn->close();
 
-if($registros==1){
+if($cursor){
     echo "
     <script>
     alert('Guardado con Exito');
     window.location = 'PerfilUsuario.php';
-    </script>"
+    </script>";
 }else{
     echo "
     <script>
     alert('Error al guardar');
     window.location = 'PerfilUsuario.php';
-    </script>"
+    </script>";
 }
 
 ?>

@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["usuario"])){
+if(!isset($_SESSION["correo"])){
     echo "
     <script>
         alert('Ingresa usuario y contraseña');
         window.location = 'index.php';
-    </script>"
+    </script>";
     session_destroy();
     die;
 }

@@ -46,6 +46,7 @@ if(!isset($_SESSION["correo"])){
         </nav>
     </aside>
     <?php
+    
 $id = $_SESSION["id"];
 
 include("conexion.php");    
@@ -59,6 +60,7 @@ if($conn->connect_error){
 
 
 $sql= "SELECT * FROM Paciente WHERE idPaciente=".$_SESSION["id"];
+
 $cursor = $conn->query($sql);
 
 $resultados = mysqli_fetch_assoc($cursor);

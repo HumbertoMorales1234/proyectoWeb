@@ -31,41 +31,6 @@ if(!isset($_SESSION["correo"])){
             text-align: right;
         }
 
-        #caja2 {
-            border: solid black 2px;
-            width: 400px;
-            height: 400px;
-            text-align: center;
-            display: grid;
-            grid-template-columns: 12% 12% 12% 12% 12% 12% 12% 12%;
-            grid-template-areas: 'horario dia1 dia2 dia3 dia4 dia5 dia6 dia7' 
-                                  'hora1  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora2  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora3  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora4  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora5  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora6  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora7  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora8  hueco hueco hueco hueco hueco hueco hueco'
-                                  'hora9  hueco hueco hueco hueco hueco hueco hueco';
-        }
-        #horario{grid-area: horario;}
-        #dia1{grid-area: dia1;}
-        #dia2{grid-area: dia2;}
-        #dia3{grid-area: dia3;}
-        #dia4{grid-area: dia4;}
-        #dia5{grid-area: dia5;}
-        #dia6{grid-area: dia6;}
-        #dia7{grid-area: dia7;}
-        #hora1{grid-area: hora1;}
-        #hora2{grid-area: hora2;}
-        #hora3{grid-area: hora3;}
-        #hora4{grid-area: hora4;}
-        #hora5{grid-area: hora5;}
-        #hora6{grid-area: hora6;}
-        #hora7{grid-area: hora7;}
-        #hora8{grid-area: hora8;}
-        #hora9{grid-area: hora9;}
     </style>
 </head>
 
@@ -94,35 +59,53 @@ if(!isset($_SESSION["correo"])){
             <button type="input">Guardar</button>
             <button><a href="PerfilUsuario.php">Cancelar</a></button>
         </form>
+    </div>
+    <br>
+    <div>
+        <label for="atomar">Medicamentos listados</label>
+            <table border="1" id="atomar">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Medicamento</th>
+                        <th>Fecha</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <?php
+                    $id = $_SESSION["id"];
 
-        <div>
-            <label for="atomar">Medicamentos listados</label>
-            <br>
-                <input type="checkbox" name="medicamentosborrar1" id="medicamentosborrar1">Med1
-                <input type="checkbox" name="medicamentosborrar2" id="medicamentosborrar2">Med2
-                <input type="checkbox" name="medicamentosborrar3" id="medicamentosborrar3">Med3
-                <button id="eliminar">Eliminar</button>
-        </div>
+                    include("conexion.php");    
+                    
+                    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+                    
+                    
+                    if($conn->connect_error){
+                        die("Error: ". $conn->connect_error);
+                    }
 
-        <div id="caja2">
-            <div id="horario">Horario</div>
-            <div id="dia1">Lun</div>
-            <div id="dia2">Mar</div>
-            <div id="dia3">Miér</div>
-            <div id="dia4">Jue</div>
-            <div id="dia5">Vie</div>
-            <div id="dia6">Sab</div>
-            <div id="dia7">Dom</div>
-            <div id="hora1">8:00</div>
-            <div id="hora2">9:00</div>
-            <div id="hora3">10:00</div>
-            <div id="hora4">11:00</div>
-            <div id="hora5">12:00</div>
-            <div id="hora6">13:00</div>
-            <div id="hora7">14:00</div>
-            <div id="hora8">15:00</div>
-            <div id="hora9">16:00</div>
-        </div>
+                    $sql= "SELECT * FROM paciente_has_medicamento as A INNER JOIN medicamento 
+                    as B ON B.idMedicamento = A.Medicamento_idMedicamento WHERE A.Paciente_idPaciente=".$_SESSION["id"];
+
+                    $cursor = $conn->query($sql);
+
+                    while($tupla = $cursor->fetch_assoc()){
+                        echo '
+						<tr>
+							<td>'.$tupla["idMedicamento"].'</td>
+							<td>'.$tupla["nombreMedicamento"].'</td>
+                            <td>'.$tupla["horarioConsumo"].'</td>
+							<th>
+							<button><a href="eliminaMed.php?idMedicamento='.$tupla["idMedicamento"].'">Eliminar</a></button>
+							</th>
+						</tr>';
+                        ?>
+                    <?php }
+                    $conn->close();?> 
+                </tbody>
+            </table>
     </div>
 </body>
 

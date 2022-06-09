@@ -29,7 +29,11 @@ if($registros == 1){
     
     header("Location: PerfilUsuario.php");
 }else{
-    header("Location: index.php?error=usuario y /opassword invalido");
+    echo "
+    <script>
+        alert('Usuario y contraseña incorrectos');
+        window.location = 'index.php';
+    </script>";
 }
 
 ?>

@@ -55,13 +55,30 @@ $resultados = mysqli_fetch_assoc($cursor);
 
 $registros = $cursor->num_rows;
 
-$conn->close();
-
 if($cursor){
 
 }else{
     /* ESPACIO PARA ERROR */
 }
+
+$sql= "SELECT * FROM paciente_has_signovital as A INNER JOIN signovital 
+        as B ON B.idSignoVital = A.SignoVital_idSignoVital WHERE A.Paciente_idPaciente=".$_SESSION["id"];
+$cursor2 = $conn->query($sql);
+
+if($cursor2){
+    $json = "";
+    $conta =0;
+    while($resultados2 = $cursor2->fetch_assoc()){
+        if($conta==0){
+            $json = $json.json_encode($resultados2);
+        }else{
+            $json = $json.",".json_encode($resultados2);
+        }
+        $conta++;
+    }
+}
+
+
 
 ?>
 <body>
@@ -98,11 +115,35 @@ if($cursor){
     </div>
     <div>
         <h2>Información de Medicamentos</h2>
-        <label id="med1">Medicamento 1: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label id="hora1">Hora de consumo:</label>
-        <br>
-        <label id="med2">Medicamento 2:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <label id="hora2">Hora de consumo:</label>
+        <?php
+         
+        ?>
+        <table border="1">
+                <thead>
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <?php
+                    $sql= "SELECT * FROM paciente_has_medicamento as A INNER JOIN medicamento 
+                    as B ON B.idMedicamento = A.Medicamento_idMedicamento WHERE A.Paciente_idPaciente=".$_SESSION["id"];
+            $cursor3 = $conn->query($sql);
+            
+            
+            while($tupla = $cursor3->fetch_assoc() ){
+                
+                    echo '
+                    <tr>
+                        <td>'.$tupla["nombreMedicamento"].'</td>
+                        <td>'.$tupla['horarioConsumo'].'</td>
+                    </tr>
+                    ';} 
+                    $conn->close();?>
+                </tbody>
+            </table>
     </div>
     <div id="caja2">
         <h2>Información de Signos Vitales</h2>
@@ -113,17 +154,11 @@ if($cursor){
         new Morris.Line({
             element: 'grafica',
 
-            data: [
-                { mes: '2022-01', value: 32 },
-                { mes: '2022-02', value: 90 },
-                { mes: '2022-03', value: 46.3 },
-                { mes: '2022-04', value: 50 },
-                { mes: '2022-05', value: 85.23 }
-            ],
-            xkey: 'mes',
-            ykeys: ['value'],
-            labels: ['Valor'],
-            xLabels: 'month'
+            data: [<?=$json?>],
+  xkey: ['fechaSigno'],
+  ykeys: ['cantidadMedida'],
+  labels: ['Medido'],
+  xLabels:['month']
         });
     </script>
 </body>

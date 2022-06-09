@@ -10,6 +10,38 @@ if(!isset($_SESSION["correo"])){
     session_destroy();
     die;
 }
+$id = $_SESSION["id"];
+
+include("conexion.php");    
+
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+
+if($conn->connect_error){
+    die("Error: ". $conn->connect_error);
+}
+
+
+$sql= "SELECT * FROM paciente_has_signovital as A INNER JOIN signovital 
+        as B ON B.idSignoVital = A.SignoVital_idSignoVital WHERE A.Paciente_idPaciente=".$_SESSION["id"];
+$cursor = $conn->query($sql);
+
+$registros = $cursor->num_rows;
+if($cursor){
+    $json = "";
+    $conta =0;
+    while($resultados = $cursor->fetch_assoc()){
+        if($conta==0){
+            $json = $json.json_encode($resultados);
+        }else{
+            $json = $json.",".json_encode($resultados);
+        }
+        $conta++;
+    }
+}
+$conn->close();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +78,7 @@ if(!isset($_SESSION["correo"])){
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.php'">
+        <input type="button" id="cerrar" cantidadMedida="Cerrar sesión" onClick="location.href='index.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">
@@ -61,9 +93,9 @@ if(!isset($_SESSION["correo"])){
             <br>
             <label for="vital">Signo vital: </label>
             <select name="vital" id="vital">
-                <option value="Presion">Presión arterial</option>
-                <option value="Glucosa">Glucosa</option>
-                <option value="Oxigeno">Oxígeno</option>
+                <option cantidadMedida="Presion">Presión arterial</option>
+                <option cantidadMedida="Glucosa">Glucosa</option>
+                <option cantidadMedida="Oxigeno">Oxígeno</option>
             </select>
             <br>
             <label for="valor">Valor: </label>
@@ -81,17 +113,11 @@ if(!isset($_SESSION["correo"])){
             new Morris.Line({
   element: 'grafica',
 
-  data: [
-    { mes: '2022-01', value: 32 },
-    { mes: '2022-02', value: 90 },
-    { mes: '2022-03', value: 46.3 },
-    { mes: '2022-04', value: 50 },
-    { mes: '2022-05', value: 85.23 }
-  ],
-  xkey: 'mes',
-  ykeys: ['value'],
-  labels: ['Valor'],
-  xLabels:'month'
+  data: [<?=$json?>],
+  xkey: ['fechaSigno'],
+  ykeys: ['cantidadMedida'],
+  labels: ['Medido'],
+  xLabels:['month']
 });
         </script>
 </body>

@@ -9,8 +9,7 @@ if($conn->connect_error){
     $vital = $_POST['vital'];
     $valor = $_POST['valor'];
 
-$sql= "INSERT INTO SignoVital (nombreSigno, cantidadMedida, fechaSigno) 
-        VALUES ('".$vital."', '".$valor."', CURRENT_DATE)";
+$sql= "INSERT INTO signovital (nombreSigno, cantidadMedida, fechaSigno) VALUES ('".$vital."', ".$valor.", CURRENT_DATE)";
 
 $cursor = $conn->query($sql);
 
@@ -22,7 +21,7 @@ if($cursor){
     echo "
     <script>
     alert('Guardado con Exito');
-    window.location = 'SignosVitales.php';
+    window.location = 'extra2.php';
     </script>";
 }else{
     echo "

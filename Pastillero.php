@@ -40,7 +40,7 @@ if(!isset($_SESSION["correo"])){
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.php'">
+        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='cerrar.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">

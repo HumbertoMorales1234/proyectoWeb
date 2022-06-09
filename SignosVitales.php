@@ -78,7 +78,7 @@ $conn->close();
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" cantidadMedida="Cerrar sesión" onClick="location.href='index.php'">
+        <input type="button" id="cerrar" cantidadMedida="Cerrar sesión" onClick="location.href='cerrar.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">

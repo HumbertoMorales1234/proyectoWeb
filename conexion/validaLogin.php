@@ -3,7 +3,7 @@
 include("conexion.php");    
 
 //Establecer conexion
-$conn = new mysqli($servidor, $user, $password, $bd);
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if($conn->connect_error){
     die("Error: ". $conn->connect_error);
@@ -16,6 +16,8 @@ $sql= "SELECT * FROM Paciente WHERE correo='".$correo."' and contraseña=md5('".
 
 $cursor = $conn->query($sql);
 
+$resultados = mysqli_fetch_assoc($cursor);
+
 $registros = $cursor->num_rows;
 
 $conn->close();
@@ -23,6 +25,8 @@ $conn->close();
 if($registros == 1){
     session_start();
     $_SESSION["correo"]=$correo;
+    $_SESSION["id"]=$resultados["idPaciente"];
+    
     header("Location: PerfilUsuario.php");
 }else{
     header("Location: index.php?error=usuario y /opassword invalido");

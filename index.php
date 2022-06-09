@@ -46,7 +46,7 @@
     </header>
 
     <div id="caja" name="caja">
-        <form action="validaLogin.php" method="post">
+        <form action="conexion/validaLogin.php" method="post">
             <label for="correo">Correo: </label>
             <input type="text" name="correo" id="correo" placeholder="Inserte su correo" required>
             <br>
@@ -55,7 +55,7 @@
             <br>
             <button type="submit">Entrar</button>
         </form> <button>
-            <a href="CrearPerfil.html">Crear Cuenta</a></button>
+            <a href="CrearPerfil.php">Crear Cuenta</a></button>
     </div>
 
 </body>

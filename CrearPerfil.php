@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,28 +33,28 @@
         </h1>
     </header>
     <div id="caja">
-        <form action="" method="post">
+        <form action="conexion/insertUsuario.php" method="post">
             <br>
             <label for="nombre">Nombre: </label>
-            <input type="text" id="nombre" required placeholder="Introduce tu nombre">
+            <input type="text" id="nombre" name="nombre" required placeholder="Introduce tu nombre">
             <br>
             <label for="aPaterno">Apellido paterno: </label>
-            <input type="text" id="aPaterno" required placeholder="Introduce tu apellido paterno">
+            <input type="text" id="aPaterno" name="aPaterno" required placeholder="Introduce tu apellido paterno">
             <br>
             <label for="aMaterno">Apellido materno: </label>
-            <input type="text" id="aMaterno" required placeholder="Introduce tu apellido materno">
+            <input type="text" id="aMaterno" name="aMaterno" required placeholder="Introduce tu apellido materno">
             <br>
-            <label for="text" >Correo: </label>
-            <input type="mail" required placeholder="Introduce tu correo">
+            <label for="correo" >Correo: </label>
+            <input type="mail" id="correo" name="correo" required placeholder="Introduce tu correo">
             <br>
             <label for="contraseña" >Contraseña: </label>
-            <input type="password" id="contraseña" required placeholder="Introduce tu contraseña">
+            <input type="password" id="contraseña" name="contraseña" required placeholder="Introduce tu contraseña">
             <br>
             <label for="confirmar" >Confirmar contraseña: </label>
-            <input type="password" id="confirmar" required placeholder="Confirma la contraseña">
+            <input type="password" id="confirmar" name="confirmar" required placeholder="Confirma la contraseña">
             <br>
-            <input type="submit" value="Enviar" id="enviar">
-            <button><a href="index.html">Regresar</a></button>
+            <button type="submit">Guardar</button>
+            <button><a href="index.php">Regresar</a></button>
         </form>
     </div>
 </body>

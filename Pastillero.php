@@ -75,27 +75,27 @@ if(!isset($_SESSION["usuario"])){
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.html'">
+        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">
-            <h3><a href="PerfilUsuario.html">Perfil</a></h3>
-            <h3><a href="Pastillero.html">Pastillero</a></h3>
-            <h3><a href="SignosVitales.html">Signos Vitales</a></h3>
-            <h3><a href="Resumen.html">Resumen</a></h3>
+            <h3><a href="PerfilUsuario.php">Perfil</a></h3>
+            <h3><a href="Pastillero.php">Pastillero</a></h3>
+            <h3><a href="SignosVitales.php">Signos Vitales</a></h3>
+            <h3><a href="Resumen.php">Resumen</a></h3>
         </nav>
     </aside>
     <div id="caja">
-        <form action="" method="post">
+        <form action="conexion/insertPastillas.php" method="post">
             <br>
             <label for="medicina">Medicina: </label>
-            <input type="text" id="medicina" required placeholder="Introduce el nombre de la medicina">
+            <input type="text" id="medicina" name="medicina" required placeholder="Introduce el nombre de la medicina">
             <br>
             <label for="hora">Hora: </label>
-            <input type="text" id="hora" required placeholder="Introduce la hora de medicación">
+            <input type="text" id="hora" name="hora" required placeholder="Introduce la hora de medicación">
             <br>
-            <button>Guardar cambios</button>
-            <button><a href="PerfilUsuario.html">Cancelar</a></button>
+            <button type="input">Guardar</button>
+            <button><a href="PerfilUsuario.php">Cancelar</a></button>
         </form>
 
         <div>

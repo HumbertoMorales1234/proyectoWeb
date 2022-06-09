@@ -34,38 +34,69 @@ if(!isset($_SESSION["usuario"])){
         }
     </style>
 </head>
+<?php
+$id = $_SESSION["id"];
 
+include("conexion.php");    
+
+$conn = new mysqli($servidor, $user, $password, $bd);
+
+
+if($conn->connect_error){
+    die("Error: ". $conn->connect_error);
+}
+
+
+$sql= "SELECT * FROM usuarios WHERE id=".$id;
+
+$cursor = $conn->query($sql);
+
+$resultados = mysqli_fetch_assoc($cursor);
+
+$registros = $cursor->num_rows;
+
+$conn->close();
+
+if($registros == 1){
+
+
+    header("Location: index.php");
+}else{
+    /* ESPACIO PARA ERROR */
+}
+
+?>
 <body>
     <header id="encabezado">
         <img src="recursos/logoGenerico.png" alt="logoGenerico" width="50px" id="logoGenerico">
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.html'">
+        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">
-            <h3><a href="PerfilUsuario.html">Perfil</a></h3>
-            <h3><a href="Pastillero.html">Pastillero</a></h3>
-            <h3><a href="SignosVitales.html">Signos Vitales</a></h3>
-            <h3><a href="Resumen.html">Resumen</a></h3>
+            <h3><a href="PerfilUsuario.php">Perfil</a></h3>
+            <h3><a href="Pastillero.php">Pastillero</a></h3>
+            <h3><a href="SignosVitales.php">Signos Vitales</a></h3>
+            <h3><a href="Resumen.php">Resumen</a></h3>
         </nav>
     </aside>
     <div>
         <h1>Información del Paciente</h1>
-        <label id="nombre">Nombre: </label>
+        <label id="nombre">Nombre: <?=$registros["nombrePaciente"] ?></label>
         <br>
-        <label id="ApellidoP">Apellido paterno: </label>
+        <label id="ApellidoP">Apellido paterno: <?=$registros["apellidoP"] ?></label>
         <br>
-        <label id="Apellidom">Apellido materno: </label>
+        <label id="Apellidom">Apellido materno: <?=$registros["apellidoM"] ?></label>
         <br>
-        <label id="GrupoS">Grupo Sanguíneo: </label>
+        <label id="GrupoS">Grupo Sanguíneo: <?=$registros["grupoSanguineo"] ?></label>
         <br>
-        <label id="Cronicos">Padecimientos Crónicos: </label>
+        <label id="Cronicos">Padecimientos Crónicos: <?=$registros["padecimiento"] ?></label>
         <br>
-        <label id="AlergiasNormie">Alergías Comunes: </label>
+        <label id="AlergiasNormie">Alergías Comunes: <?=$registros["alergia"] ?></label>
         <br>
-        <label id="AlergiasMedicamentos">Alergias a Medicamentos: </label>
+        <label id="AlergiasMedicamentos">Alergias a Medicamentos: <?=$registros["alergiasM"] ?></label>
     </div>
     <div>
         <h2>Información de Medicamentos</h2>

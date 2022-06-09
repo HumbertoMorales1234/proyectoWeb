@@ -46,18 +46,18 @@ if(!isset($_SESSION["usuario"])){
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.html'">
+        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">
-                <h3><a href="PerfilUsuario.html">Perfil</a></h3>
-                <h3><a href="Pastillero.html">Pastillero</a></h3>
-                <h3><a href="SignosVitales.html">Signos Vitales</a></h3>
-                <h3><a href="Resumen.html">Resumen</a></h3>
+                <h3><a href="PerfilUsuario.php">Perfil</a></h3>
+                <h3><a href="Pastillero.php">Pastillero</a></h3>
+                <h3><a href="SignosVitales.php">Signos Vitales</a></h3>
+                <h3><a href="Resumen.php">Resumen</a></h3>
         </nav>
     </aside>
     <div id="caja">
-        <form action="" method="post">
+        <form action="conexion/insertSigno.php" method="post">
             <br>
             <label for="vital">Signo vital: </label>
             <select name="vital" id="vital">
@@ -67,9 +67,9 @@ if(!isset($_SESSION["usuario"])){
             </select>
             <br>
             <label for="valor">Valor: </label>
-            <input type="text" id="valor" required placeholder="Introduce el valor">
+            <input type="text" id="valor" name="valor" required placeholder="Introduce el valor">
             <br>
-            <button>Guardar cambios</button>
+            <button type="input">Guardar</button>
             <button><a href="PerfilUsuario.html">Cancelar</a></button>
         </form>
         <div id="caja2">

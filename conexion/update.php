@@ -1,8 +1,10 @@
 <?php
-//Aquí estan las variables de conexion
+session_start();
+
+
 include("conexion.php");    
 
-//Establecer conexion
+
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 if($conn->connect_error){
@@ -14,6 +16,11 @@ if($conn->connect_error){
     $correo = $_POST['correo'];
     $contraseña = $_POST['contraseña'];
     $confirmar = $_POST['confirmar'];
+    $alergias = $_POST['alergias'];
+    $cronicos = $_POST['cronicos'];
+    $alergiasM = $_POST['alergiasM'];
+    $sangre = $_POST['sangre'];
+
 
     if($confirmar != $contraseña){
         echo "
@@ -24,8 +31,8 @@ if($conn->connect_error){
     die;
     }
 
-$sql= "INSERT INTO Paciente (nombrePaciente, apellidoP, apellidoM, correo, contraseña) 
-        VALUES ('".$nombre."','".$aPaterno."','".$aMaterno."','".$correo."','".$contraseña."')";
+$sql= "UPDATE Paciente SET nombrePaciente='".$nombre."', apellidoP='".$aPaterno."', apellidoM='".$aMaterno."',grupoSanguineo='".$sangre."',
+        correo='".$correo."', alergia='".$alergias."', padecimiento='".$cronicos."',alergiasM='".$alergiasM."' WHERE idPaciente=".$_SESSION["id"];
 
 $cursor = $conn->query($sql);
 
@@ -39,13 +46,13 @@ if($registros==1){
     echo "
     <script>
     alert('Guardado con Exito');
-    window.location = 'index.php';
+    window.location = 'PerfilUsuario.php';
     </script>"
 }else{
     echo "
     <script>
     alert('Error al guardar');
-    window.location = 'index.php';
+    window.location = 'PerfilUsuario.php';
     </script>"
 }
 

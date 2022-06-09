@@ -35,51 +35,82 @@ if(!isset($_SESSION["usuario"])){
         <h1>
             E-Salud
         </h1>
-        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.html'">
+        <input type="button" id="cerrar" value="Cerrar sesión" onClick="location.href='index.php'">
     </header>
     <aside id="lateral" name="lateral">
         <nav id="menu">
-                <h3><a href="PerfilUsuario.html">Perfil</a></h3>
-                <h3><a href="Pastillero.html">Pastillero</a></h3>
-                <h3><a href="SignosVitales.html">Signos Vitales</a></h3>
-                <h3><a href="Resumen.html">Resumen</a></h3>
+                <h3><a href="PerfilUsuario.php">Perfil</a></h3>
+                <h3><a href="Pastillero.php">Pastillero</a></h3>
+                <h3><a href="SignosVitales.php">Signos Vitales</a></h3>
+                <h3><a href="Resumen.php">Resumen</a></h3>
         </nav>
     </aside>
+    <?php
+$id = $_SESSION["id"];
+
+include("conexion.php");    
+
+$conn = new mysqli($servidor, $user, $password, $bd);
+
+
+if($conn->connect_error){
+    die("Error: ". $conn->connect_error);
+}
+
+
+$sql= "SELECT * FROM usuarios WHERE id=".$id;
+
+$cursor = $conn->query($sql);
+
+$resultados = mysqli_fetch_assoc($cursor);
+
+$registros = $cursor->num_rows;
+
+$conn->close();
+
+if($registros == 1){
+
+
+    header("Location: index.php");
+}else{
+    /* ESPACIO PARA ERROR */
+}
+
+?>
     <div id="caja">
-    <form action="" method="post">
+    <form action="conexion/update.php" method="post">
         <br>
         <label for="nombre">Nombre: </label>
-        <input type="text" id="nombre" required placeholder="Introduce tu nombre">
+        <input type="text" id="nombre" name="nombre" required placeholder="Introduce tu nombre" value="<?=$registros["nombrePaciente"] ?>">
         <br>
         <label for="aPaterno">Apellido paterno: </label>
-        <input type="text" id="aPaterno" required placeholder="Introduce tu apellido paterno">
+        <input type="text" id="aPaterno" name="aPaterno" required placeholder="Introduce tu apellido paterno" value="<?=$registros["apellidoP"] ?>">
         <br>
         <label for="aMaterno">Apellido materno: </label>
-        <input type="text" id="aMaterno" required placeholder="Introduce tu apellido materno">
+        <input type="text" id="aMaterno" name="aMaterno" required placeholder="Introduce tu apellido materno" value="<?=$registros["apellidoM"] ?>">
         <br>
-        <label for="text" >Correo: </label>
-        <input type="mail" required placeholder="Introduce tu correo">
+        <label for="correo" >Correo: </label>
+        <input type="mail" required placeholder="Introduce tu correo" id="correo" name="correo" value="<?=$registros["correo"] ?>">
         <br>
         <label for="alergias" >Alergias: </label>
-        <input type="text" id="alergias" placeholder="Confirma la contraseña">
+        <input type="text" id="alergias" name="alergias" placeholder="Introduce tus alergias" value="<?=$registros["alergia"] ?>">
         <br>
         <label for="cronicos">Padecimientos crónicos: </label>
-        <input type="text" id="aMaterno" required placeholder="Introduce tus padecimientos">
+        <input type="text" id="cronicos" name="cronicos" required placeholder="Introduce tus padecimientos" value="<?=$registros["padecimiento"] ?>">
         <br>
         <label for="aergiasM" >Alergias a medicamentos: </label>
-        <input type="text" id="alergiasM" placeholder="Confirma la contraseña">
+        <input type="text" id="alergiasM" name="alergiasM" placeholder="Confirma la contraseña" value="<?=$registros["nombrePaciente"] ?>">
         <br>
         <label for="sangre" >Tipo de sangre: </label>
-        <input type="text" id="sangre" placeholder="Confirma la contraseña">
+        <input type="text" id="sangre" name="sangre" placeholder="Introduce tipo de sangre" value="<?=$registros["grupoSanguineo"] ?>">
         <br>
         <label for="contraseña" >Contraseña: </label>
-        <input type="password" id="contraseña" required placeholder="Introduce tu contraseña">
+        <input type="password" id="contraseña" name="contraseña" required placeholder="Introduce tu contraseña" >
         <br>
         <label for="confirmar" >Confirmar contraseña: </label>
-        <input type="password" id="confirmar" required placeholder="Confirma la contraseña">
+        <input type="password" id="confirmar" name="confirmar" required placeholder="Confirma la contraseña">
         <br>
-        <button>Guardar cambios</button>
-        <button><a href="PerfilUsuario.html">Cancelar</a></button>
+        <button type="submit">Guardar</button>
     </form>
     </div>  
 </body>
